@@ -1,0 +1,8 @@
+SetOutputFilter DEFLATE
+# do not show directory Listing
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /prototype/
+RewriteCond $1 !^(index\.php|assets)
+RewriteRule ^(.*)$ /prototype/index.php/$1 [L]
