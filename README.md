@@ -32,7 +32,7 @@ Jadi yang biasa ny anda load database seperti berikut
  $this->load->database();
 ```
 
-Sekarang anda menggukana use terlebih dahulu untuk memperingkat kode ataupun tidak , contoh
+Sekarang anda menggunakan use terlebih dahulu untuk mempersingkat kode ataupun tidak , contoh
 ```PHP
 use Saya\DB ;
 ```
