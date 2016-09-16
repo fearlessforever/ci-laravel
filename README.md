@@ -50,3 +50,10 @@ menggunakan Query builder dari laravel ini seperti berikut :
 <p></p>
 Untuk lebih detail penggunaan query builder ny laravel silahkan baca-baca di dokumentasi nya laravel bagian queries ataupun eloquent.
 <br> Anda juga bisa melihat contoh nya di source code dari prototype system informasi ini untuk penggunaan nya.
+
+<p></p>
+Demo :
+<a href="http://demo-saya.esy.es/">http://demo-saya.esy.es/</a> <br>
+Default data login : <br>
+Administrator ===> HeL password : 1 <br>
+Member ===> mEmber : 1 <br>
