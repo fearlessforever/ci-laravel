@@ -59,6 +59,7 @@ Saya\DB::table('table_saya')->get();
 <p></p>
 Untuk lebih detail penggunaan query builder ny laravel silahkan baca-baca di dokumentasi nya laravel bagian queries ataupun eloquent.
 <br> Anda juga bisa melihat contoh nya di source code dari prototype system informasi ini untuk penggunaan nya.
+<p></p>
 
 #Penggunan API
 Api dari Prototype Sistem Informasi ini Bisa diakses di <a href="http://localhost/prototype/api/">http://localhost/prototype/api/</a> jika anda sudah berhasil melakukan instalasi prototype ini ke komputer anda.<br>
