@@ -31,8 +31,9 @@ Prototype SI ini dibuat menggunakan framework Code igniter tetapi sudah mengguna
 Prototype ini juga menggunakan query builder dari Laravel , jadi anda bisa menggunakan Eloquent ORM nya laravel untuk read/write database <br>
 Alasan saya tidak menggunakan query builder bawaan CI karena bind query dari query builder ny CI tidak melakukan bind param atau pun value di query yang di eksekusi.<br>
 <p></p>
-Jadi yang biasa ny anda load database seperti berikut
-```PHP
+Jadi yang biasa ny anda load database seperti berikut <br>
+
+```php
 $this->load->database();
 ```
 
@@ -41,16 +42,20 @@ Sekarang anda menggunakan use terlebih dahulu untuk mempersingkat kode ataupun t
 use Saya\DB ;
 ```
 <p></p>
-Biasa ny untuk membaca tabel menggunakan CI anda melakukan nya seperti berikut :
-```PHP
+Biasa ny untuk membaca tabel menggunakan CI anda melakukan nya seperti berikut : <br>
+
+```php
 $this->db->get('table_saya');
 ```
-menggunakan Query builder dari laravel ini seperti berikut :
-```PHP
+menggunakan Query builder dari laravel ini seperti berikut : <br>
+
+```php
 DB::table('table_saya')->get();
 // Jika tidak menggunakan use anda tetap bisa membaca / write ke table database seperti berikut:
 Saya\DB::table('table_saya')->get();
 ```
+ <br>
+
 <p></p>
 Untuk lebih detail penggunaan query builder ny laravel silahkan baca-baca di dokumentasi nya laravel bagian queries ataupun eloquent.
 <br> Anda juga bisa melihat contoh nya di source code dari prototype system informasi ini untuk penggunaan nya.
