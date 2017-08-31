@@ -58,3 +58,10 @@ $route['logout'] = 'rumah_ny/logout';
 $route['internal-nya/(:any)'] = 'logged_in_area/route/$1';
 $route['internal-nya/(:any)/(:any)'] = 'logged_in_area/route/$1';
 $route['internal-nya'] = 'logged_in_area/route';
+
+/****************** API Route ******************************/
+	$route['api'] = 'my_api/route';
+	$route['api/(:any)'] = 'my_api/route';
+	$route['api/(:any)/(:any)'] = 'my_api/route';
+	$route['api/(:any)/(:any)/(:any)'] = 'my_api/route';
+/****************** End Of API Route ******************************/

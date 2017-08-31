@@ -21,6 +21,7 @@ Class User{
 		$CI = &get_instance();
 		if(!isset($CI->session))show_error('<strong>Session Not Found </strong>',503);
 		$a = $CI->session->all_userdata();
+		
 		if(isset($a['userid']) && isset($a['nama']) ){
 			self::$data=array(
 				'userid'=>$a['userid'] ,'nama'=>$a['nama'],'level'=>date('Y-m-d H:i:s'),'nama_d'=>'','blokir'=>'N','extra'=>array(),'modul'=>array() ,'md5'=>''
@@ -33,7 +34,6 @@ Class User{
 					$b = explode(' ',self::$data['nama']);
 					self::$data['nama_d'] = $b[0];
 				}else{
-					$_SESSION=null;
 					$CI->session->sess_destroy();
 					$ajax = $CI->input->is_ajax_request();
 					if(!$ajax){
@@ -73,19 +73,26 @@ Class User{
 				return array('error'=>'Can\'t Log into System, You have been Blocked !!!' );
 			}
 			if (password_verify($data['password'], $user['passnya'] )) {
-				$_SESSION['userid']= $user['userid']; $_SESSION['nama']= $user['nama'];
+				//$_SESSION['userid']= $user['userid']; $_SESSION['nama']= $user['nama'];
 				$a = array(
 					'berhasil'=>'You have Logged in' ,'location'=>'internal-nya'
 				);
 				if( !empty($data['remember']) ){
-					$cookie = get_instance()->config->item('sess_cookie_name'); // we get the cookie
-					$cookie = get_instance()->input->cookie( $cookie ); // we get the cookie
+					$cookieName = get_instance()->config->item('sess_cookie_name'); // we get the cookie
+					$cookie = get_instance()->input->cookie( $cookieName ); // we get the cookie
+					
 					if(!empty($cookie))
 					{
-						get_instance()->input->set_cookie('infaq_session', $cookie, '35580000');
+						get_instance()->input->set_cookie( $cookieName , $cookie, '35580000');
 					}
 					
 				}
+				get_instance()->session->set_userdata([
+					'userid'=>$user['userid'],'nama'=> $user['nama']
+				]);
+				$a = array(
+					'berhasil'=>'You have Logged in' ,'location'=>get_instance()->config->item('dashboard_page')
+				);
 				\Saya\Notif::set( 0 , '' , $user['userid'] );
 			}
 			

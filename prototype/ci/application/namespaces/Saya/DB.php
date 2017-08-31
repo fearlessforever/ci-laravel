@@ -16,12 +16,13 @@ use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
 
 //require ( '/../Illuminate/Support/helpers.php');
-require ( APPPATH . 'namespaces/Illuminate/Support/helpers.php');
+require_once ( APPPATH . 'namespaces/Illuminate/Support/helpers.php');
 
 Class DB extends Capsule {
 	
 	public static $koneksi_status = FALSE;
 	private static $status_orm = FALSE;
+	private static $setting = array();
 	
 	public static function koneksi( $orm = FALSE )
 	{
@@ -32,9 +33,11 @@ Class DB extends Capsule {
 		if(self::$koneksi_status)return;
 		
 		$koneksi=null;
-		if( file_exists( APPPATH .'config/database.php' ) ){
+		if( file_exists( APPPATH .'config/database.php' ) && self::$setting == array() ){
 			require (APPPATH .'config/database.php');
 			$koneksi = isset($db['laravel_orm']) ? $db['laravel_orm'] : null;
+		}else{
+			$koneksi = self::$setting ;
 		}
 		if(empty($koneksi))show_error('
 			<strong style="font-weight:bold;">Database Connection Not Found <span style="color:red;">[ application/config/database.php ]</span> !!!</strong>
@@ -84,5 +87,12 @@ Class DB extends Capsule {
 		//self::connection()->setFetchMode(PDO::FETCH_ASSOC);
 		
 		self::$koneksi_status= TRUE;
+	}
+	public static function  baru( $koneksi = null , $orm = FALSE )
+	{
+		if(!is_array( $koneksi)) return false;
+		self::$koneksi_status= FALSE;
+		self::$setting = $koneksi ;
+		self::koneksi( $orm );
 	}
 }

@@ -21,15 +21,21 @@ Class Notif{
 	}
 	public static function check( $last_seen_notif = 0 )
 	{
-		if(!isset($_SESSION))return array('error'=>'No Session , Please Reload Or Relogin !!!');
-		if(isset($_SESSION['notif_last_check'])){
-			$_time = time() - $_SESSION['notif_last_check'] ;
+		$session=array();
+		$session['notif_last_check'] = get_instance()->input->cookie('notif_last_check');
+		//if(!isset($session['id_user']))return array('error'=>'No Session , Please Reload Or Relogin !!!');
+		if(isset($session['notif_last_check'])){
+			$_time = time() - $session['notif_last_check'] ;
 			if( $_time < 61){
-				session_write_close();
-				return array('timestamp'=> $_SESSION['notif_last_check'] ,'next'=>( 61 - $_time) );
+				//session_write_close();
+				return array('timestamp'=> $session['notif_last_check'] ,'next'=>( 61 - $_time) );
 			}
 		}
-		$_SESSION['notif_last_check'] = time();
+		/* get_instance()->session->set_userdata([
+			'notif_last_check'=>time()
+		]); */
+		setcookie('notif_last_check',time(),time()+360 );
+		//$session['notif_last_check'] = time();
 		
 		$get = DB::select("SELECT count(1) as hasil FROM z_notif WHERE waktu > :waktu LIMIT 1" ,array('waktu'=>$last_seen_notif ) );
 		if(isset($get[0]) && is_array($get) ){

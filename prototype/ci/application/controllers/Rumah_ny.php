@@ -8,6 +8,7 @@ class Rumah_ny extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('load');
+		Saya\Session::ci2();
 	}
 	public function index()
 	{
@@ -15,7 +16,7 @@ class Rumah_ny extends CI_Controller {
 		if( User::is_logged_in() ){
 			if($ajax){
 				Temp::view_json(
-					array('berhasil'=>'You Have Logged In','location'=>'internal-nya' )
+					array('berhasil'=>'You Have Logged In','location'=>$this->config->item('dashboard_page') )
 				, TRUE );
 				return;
 			}else{

@@ -12,6 +12,7 @@ class Logged_in_area extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('load');
+		Saya\Session::ci2();
 	}
 	
 	public function route($a=null)
