@@ -3,6 +3,5 @@ SetOutputFilter DEFLATE
 Options -Indexes
 
 RewriteEngine On
-RewriteBase /prototype/
 RewriteCond $1 !^(index\.php|assets)
-RewriteRule ^(.*)$ /prototype/index.php/$1 [L]
+RewriteRule ^(.*)$ index.php/$1 [L]
